@@ -1,6 +1,28 @@
-from ..base.data_parser import BaseDataParser
+from ..base import BaseDataParser, DataParseInputError
 
 
 class CinemaCityDataParser(BaseDataParser):
-    def parse(self, input_data):
-        return input_data
+    def parse(self, input_data, parameters):
+        assert isinstance(input_data, dict)
+
+        body = input_data['body']
+
+        if not body:
+            raise DataParseInputError("Body key does not exist in given data object")
+
+        movies = body['films']
+
+        if not movies:
+            raise DataParseInputError("Movies key is not existent in given data")
+
+        parsed_movies = []
+
+        for movie in movies:
+            movie_obj = {
+                'name': movie['name'],
+                'length': movie['length'],
+            }
+
+            parsed_movies.append(movie_obj)
+
+        return parsed_movies
