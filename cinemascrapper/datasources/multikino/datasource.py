@@ -1,5 +1,5 @@
 import requests
-from ..base.datasource import BaseDataSource
+from ..base import BaseDataSource
 
 
 class MultiKinoDataSource(BaseDataSource):

@@ -1,5 +1,5 @@
 import requests
-from ..base.datasource import BaseDataSource
+from ..base import BaseDataSource
 
 
 class CinemaCityDataSource(BaseDataSource):
@@ -14,6 +14,7 @@ class CinemaCityDataSource(BaseDataSource):
 
     def fetch(self, cinema, date):
         url = CinemaCityDataSource._get_url(cinema, date)
+        print("Requesting: %s" % url)
         resp = requests.get(url)
 
         return resp.json()
@@ -26,8 +27,8 @@ class CinemaCityDataSource(BaseDataSource):
         replacements = {
             'cinema': cinema,
             'date_year': date.year,
-            'date_month': date.month,
-            'date_day': date.day
+            'date_month': str(date.month).zfill(2),
+            'date_day': str(date.day).zfill(2)
         }
 
         return base_url.format(**replacements)
