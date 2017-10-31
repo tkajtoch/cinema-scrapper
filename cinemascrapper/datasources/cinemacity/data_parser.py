@@ -7,12 +7,12 @@ class CinemaCityDataParser(BaseDataParser):
 
         body = input_data['body']
 
-        if not body:
+        if body is None:
             raise DataParseInputError("Body key does not exist in given data object")
 
         movies = body['films']
 
-        if not movies:
+        if movies is None:
             raise DataParseInputError("Movies key is not existent in given data")
 
         parsed_movies = []
