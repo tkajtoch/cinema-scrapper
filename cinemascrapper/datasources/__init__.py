@@ -7,10 +7,3 @@ from .multikino import (
     MultiKinoDataSource,
     MultiKinoDataParser
 )
-
-data_sources = {
-    'cinemacity': {
-        'datasource': CinemaCityDataSource,
-        'data_parser': CinemaCityDataParser
-    },
-}
